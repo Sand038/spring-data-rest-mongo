@@ -6,5 +6,4 @@ public final class DBCollection {
   }
 
   public static final String STUDENT = "STUDENT";
-
 }
