@@ -1,14 +1,26 @@
 package com.sand.studentservice.repository;
 
+import java.util.Optional;
+
+import org.bson.types.ObjectId;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 @NoRepositoryBean
-@RepositoryRestResource(exported = false)
-public interface BaseRepository<T> extends MongoRepository<T, String> {
+public interface BaseRepository<T> extends MongoRepository<T, ObjectId> {
 
-//  @Override
-//  @RestResource(exported = false)
-//  void deleteById(String aLong);
+  @Override
+  @RestResource
+  Page<T> findAll(Pageable pageable);
+
+  @Override
+  @RestResource
+  Optional<T> findById(ObjectId id);
+
+  @Override
+  @RestResource
+  <S extends T> S save(S entity);
 }
