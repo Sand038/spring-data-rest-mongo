@@ -34,4 +34,8 @@ public abstract class BaseDocument {
   private String lastModifiedBy;
 
   private String status;
+
+  public String getId() {
+    return id.toHexString();
+  }
 }
